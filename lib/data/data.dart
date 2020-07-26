@@ -1,6 +1,6 @@
 import 'package:wallpaperapp/models/categorie_model.dart';
 
-String apiKEY = "";
+String apiKEY = "563492ad6f91700001000001c5424b5350314035ada09b77deb87932";
 
 List<CategorieModel> getCategories() {
   List<CategorieModel> categories = new List();
@@ -8,15 +8,15 @@ List<CategorieModel> getCategories() {
 
   //
   categorieModel.imgUrl =
-      "https://images.pexels.com/photos/545008/pexels-photo-545008.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+      "https://images.pexels.com/photos/3690511/pexels-photo-3690511.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900";
   categorieModel.categorieName = "Animals";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 
   //
   categorieModel.imgUrl =
-      "https://images.pexels.com/photos/704320/pexels-photo-704320.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  categorieModel.categorieName = "minimal";
+  "https://images.pexels.com/photos/3028961/pexels-photo-3028961.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+  categorieModel.categorieName = "Minimal";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 
@@ -44,8 +44,8 @@ List<CategorieModel> getCategories() {
 
   //
   categorieModel.imgUrl =
-      "https://images.pexels.com/photos/2116475/pexels-photo-2116475.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  categorieModel.categorieName = "galaxy";
+      "https://images.pexels.com/photos/2150/sky-space-dark-galaxy.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+  categorieModel.categorieName = "Galaxy";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 
@@ -57,8 +57,8 @@ List<CategorieModel> getCategories() {
   categorieModel = new CategorieModel();
 
   categorieModel.imgUrl =
-  "https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  categorieModel.categorieName = "dogs";
+  "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+  categorieModel.categorieName = "Dogs";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 

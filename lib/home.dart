@@ -72,6 +72,71 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            DrawerHeader(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Made By ",
+                        style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 12,
+                            fontFamily: 'Overpass'),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _launchURL("https://www.github.com/aruntemme/");
+                        },
+                        child: Container(
+                            child: Text(
+                              "Arun",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 12,
+                                  fontFamily: 'Overpass'),
+                            )),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            Text(
+              "Categories",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontFamily: 'Overpass'),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Expanded(
+              child: ListView.builder(
+                  padding: EdgeInsets.all(10.0),
+                  itemCount: categories.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, index) {
+                    /// Create List Item tile
+                    return CategoriesTile(
+                      imgUrls: categories[index].imgUrl,
+                      categorie: categories[index].categorieName,
+                    );
+                  }),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: brandName(),
         elevation: 0.0,
@@ -81,6 +146,9 @@ class _HomeState extends State<Home> {
         child: Container(
           child: Column(
             children: <Widget>[
+              SizedBox(
+                height: 16,
+              ),
               Container(
                 decoration: BoxDecoration(
                   color: Color(0xfff5f8fd),
@@ -90,6 +158,7 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
                   children: <Widget>[
+
                     Expanded(
                         child: TextField(
                       controller: searchController,
@@ -113,61 +182,10 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(
-                height: 16,
+                height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Made By ",
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 12,
-                        fontFamily: 'Overpass'),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      _launchURL("https://www.github.com/aruntemme/");
-                    },
-                    child: Container(
-                        child: Text(
-                      "Arun",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 12,
-                          fontFamily: 'Overpass'),
-                    )),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                "Categories",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontFamily: 'Overpass'),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Container(
-                height: 80,
-                child: ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    itemCount: categories.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      /// Create List Item tile
-                      return CategoriesTile(
-                        imgUrls: categories[index].imgUrl,
-                        categorie: categories[index].categorieName,
-                      );
-                    }),
-              ),
+
+
               wallPaper(photos, context),
               SizedBox(
                 height: 24,
@@ -225,7 +243,7 @@ class CategoriesTile extends StatelessWidget {
                     )));
       },
       child: Container(
-        margin: EdgeInsets.only(right: 8),
+        margin: EdgeInsets.only(right: 8,bottom: 15),
         child: kIsWeb
             ? Column(
                 children: <Widget>[
@@ -234,21 +252,21 @@ class CategoriesTile extends StatelessWidget {
                       child: kIsWeb
                           ? Image.network(
                               imgUrls,
-                              height: 50,
-                              width: 100,
+                              height:150,
+                              width: 300,
                               fit: BoxFit.cover,
                             )
                           : CachedNetworkImage(
                               imageUrl: imgUrls,
-                              height: 50,
-                              width: 100,
+                              height: 150,
+                              width: 300,
                               fit: BoxFit.cover,
                             )),
                   SizedBox(
                     height: 4,
                   ),
                   Container(
-                      width: 100,
+                      width: 300,
                       alignment: Alignment.center,
                       child: Text(
                         categorie,
@@ -267,27 +285,27 @@ class CategoriesTile extends StatelessWidget {
                       child: kIsWeb
                           ? Image.network(
                               imgUrls,
-                              height: 50,
-                              width: 100,
+                              height: 150,
+                              width: 300,
                               fit: BoxFit.cover,
                             )
                           : CachedNetworkImage(
                               imageUrl: imgUrls,
-                              height: 50,
-                              width: 100,
+                              height: 150,
+                              width: 300,
                               fit: BoxFit.cover,
                             )),
                   Container(
-                    height: 50,
-                    width: 100,
+                    height: 150,
+                    width: 300,
                     decoration: BoxDecoration(
                       color: Colors.black26,
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                   Container(
-                      height: 50,
-                      width: 100,
+                      height: 150,
+                      width: 300,
                       alignment: Alignment.center,
                       child: Text(
                         categorie ?? "Yo Yo",
