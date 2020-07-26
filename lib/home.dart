@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -21,6 +22,16 @@ class _HomeState extends State<Home> {
 
   int noOfImageToLoad = 30;
   List<PhotosModel> photos = new List();
+
+  bool isSwitched = false;
+
+  void toggleTheme() {
+    if (Theme.of(context).brightness == Brightness.dark){
+      DynamicTheme.of(context).setBrightness(Brightness.light);
+    }
+    else if (Theme.of(context).brightness == Brightness.light)
+    DynamicTheme.of(context).setBrightness(Brightness.dark);
+  }
 
   getTrendingWallpaper() async {
     await http.get(
@@ -95,12 +106,12 @@ class _HomeState extends State<Home> {
                         },
                         child: Container(
                             child: Text(
-                              "Arun",
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 12,
-                                  fontFamily: 'Overpass'),
-                            )),
+                          "Arun",
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 12,
+                              fontFamily: 'Overpass'),
+                        )),
                       ),
                     ],
                   ),
@@ -110,12 +121,29 @@ class _HomeState extends State<Home> {
                 color: Colors.blue,
               ),
             ),
+            Row(children: <Widget>[
+              SizedBox(
+                width: 16,
+              ),
+              Text(
+                "Dark mode",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              Switch(
+                activeColor: Colors.blue,
+                  value: isSwitched,
+                  onChanged: (val) {
+                    toggleTheme();
+                    setState(() {
+                      isSwitched = val;
+                    });
+                  }),
+            ]),
             Text(
               "Categories",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Overpass'),
+              style: TextStyle(fontSize: 20, fontFamily: 'Overpass'),
             ),
             SizedBox(
               height: 16,
@@ -141,7 +169,6 @@ class _HomeState extends State<Home> {
         title: brandName(),
         elevation: 0.0,
       ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -151,19 +178,21 @@ class _HomeState extends State<Home> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Color(0xfff5f8fd),
+                  color: Color(0xff8c8c8c),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 margin: EdgeInsets.symmetric(horizontal: 24),
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
                   children: <Widget>[
-
                     Expanded(
                         child: TextField(
                       controller: searchController,
                       decoration: InputDecoration(
                           hintText: "search wallpapers",
+                          hintStyle: TextStyle(
+                            color: Colors.white,
+                          ),
                           border: InputBorder.none),
                     )),
                     InkWell(
@@ -184,8 +213,6 @@ class _HomeState extends State<Home> {
               SizedBox(
                 height: 20,
               ),
-
-
               wallPaper(photos, context),
               SizedBox(
                 height: 24,
@@ -243,7 +270,7 @@ class CategoriesTile extends StatelessWidget {
                     )));
       },
       child: Container(
-        margin: EdgeInsets.only(right: 8,bottom: 15),
+        margin: EdgeInsets.only(right: 8, bottom: 15),
         child: kIsWeb
             ? Column(
                 children: <Widget>[
@@ -252,7 +279,7 @@ class CategoriesTile extends StatelessWidget {
                       child: kIsWeb
                           ? Image.network(
                               imgUrls,
-                              height:150,
+                              height: 150,
                               width: 300,
                               fit: BoxFit.cover,
                             )
