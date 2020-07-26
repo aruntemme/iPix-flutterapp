@@ -1,6 +1,6 @@
 import 'package:wallpaperapp/models/categorie_model.dart';
 
-String apiKEY = "APIKEY";
+String apiKEY = "";
 
 List<CategorieModel> getCategories() {
   List<CategorieModel> categories = new List();
@@ -9,14 +9,14 @@ List<CategorieModel> getCategories() {
   //
   categorieModel.imgUrl =
       "https://images.pexels.com/photos/545008/pexels-photo-545008.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  categorieModel.categorieName = "Street Art";
+  categorieModel.categorieName = "Animals";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 
   //
   categorieModel.imgUrl =
       "https://images.pexels.com/photos/704320/pexels-photo-704320.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  categorieModel.categorieName = "Wild Life";
+  categorieModel.categorieName = "minimal";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 
@@ -45,7 +45,7 @@ List<CategorieModel> getCategories() {
   //
   categorieModel.imgUrl =
       "https://images.pexels.com/photos/2116475/pexels-photo-2116475.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
-  categorieModel.categorieName = "Bikes";
+  categorieModel.categorieName = "galaxy";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 
@@ -53,6 +53,12 @@ List<CategorieModel> getCategories() {
   categorieModel.imgUrl =
       "https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
   categorieModel.categorieName = "Cars";
+  categories.add(categorieModel);
+  categorieModel = new CategorieModel();
+
+  categorieModel.imgUrl =
+  "https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+  categorieModel.categorieName = "dogs";
   categories.add(categorieModel);
   categorieModel = new CategorieModel();
 

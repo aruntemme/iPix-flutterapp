@@ -127,7 +127,7 @@ class _HomeState extends State<Home> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      _launchURL("https://www.linkedin.com/in/lamsanskar/");
+                      _launchURL("https://www.github.com/aruntemme/");
                     },
                     child: Container(
                         child: Text(
@@ -139,6 +139,16 @@ class _HomeState extends State<Home> {
                     )),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Text(
+                "Categories",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontFamily: 'Overpass'),
               ),
               SizedBox(
                 height: 16,
