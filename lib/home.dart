@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +12,8 @@ import 'package:wallpaperapp/models/photos_model.dart';
 import 'package:wallpaperapp/view/categorie_screen.dart';
 import 'package:wallpaperapp/view/search_view.dart';
 import 'package:wallpaperapp/widget/widget.dart';
+import 'package:day_night_switch/day_night_switch.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -23,16 +26,39 @@ class _HomeState extends State<Home> {
   int noOfImageToLoad = 30;
   List<PhotosModel> photos = new List();
 
+  var quote = "";
+
   bool isSwitched = false;
 
   void toggleTheme() {
-    if (Theme.of(context).brightness == Brightness.dark){
+    if (Theme.of(context).brightness == Brightness.dark) {
       DynamicTheme.of(context).setBrightness(Brightness.light);
-    }
-    else if (Theme.of(context).brightness == Brightness.light)
-    DynamicTheme.of(context).setBrightness(Brightness.dark);
+    } else if (Theme.of(context).brightness == Brightness.light)
+      DynamicTheme.of(context).setBrightness(Brightness.dark);
   }
 
+  getQuote() {
+    var list = [
+      "“The supreme happiness of life consists in the conviction that one is loved.”",
+      "“We accept the love we think we deserve.”",
+      "“Get busy living or get busy dying.”",
+      "“If you want to be happy, be.”",
+      "“The opposite of love is not hate; it’s indifference.”",
+      "“When you reach the end of your rope, tie a knot in it and hang on.“",
+      "“Whoever is happy will make others happy too.“",
+      "“The purpose of our lives is to be happy.“",
+      "“Those who realize their folly are not true fools“"
+    ];
+    var randomItem = (list..shuffle()).first;
+    quote = randomItem;
+    return quote;
+  }
+
+  permission () async{
+    final PermissionHandler _permissionHandler = PermissionHandler();
+    var result = await _permissionHandler.requestPermissions(
+        [PermissionGroup.storage]);
+  }
   getTrendingWallpaper() async {
     await http.get(
         "https://api.pexels.com/v1/curated?per_page=30&query=cats&page=1",
@@ -52,6 +78,10 @@ class _HomeState extends State<Home> {
     });
   }
 
+
+  var dayColor = Color(0xFF51b9ff);
+  var nightColor = Color(0xFF1e2230);
+
   TextEditingController searchController = new TextEditingController();
 
   ScrollController _scrollController = new ScrollController();
@@ -60,6 +90,8 @@ class _HomeState extends State<Home> {
   void initState() {
     //getWallpaper();
     getTrendingWallpaper();
+    getQuote();
+    permission();
     categories = getCategories();
     super.initState();
 
@@ -88,15 +120,27 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             DrawerHeader(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+                  SizedBox(
+                    height: 1,
+                  ),
+           Text(
+                      quote,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: 'Pacifico'),
+                    ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        "Made By ",
+                        "Made with 💛 by ",
                         style: TextStyle(
-                            color: Colors.black54,
+                            color: Colors.black,
                             fontSize: 12,
                             fontFamily: 'Overpass'),
                       ),
@@ -108,7 +152,7 @@ class _HomeState extends State<Home> {
                             child: Text(
                           "Arun",
                           style: TextStyle(
-                              color: Colors.blue,
+                              color: Colors.white,
                               fontSize: 12,
                               fontFamily: 'Overpass'),
                         )),
@@ -121,30 +165,21 @@ class _HomeState extends State<Home> {
                 color: Colors.blue,
               ),
             ),
-            Row(children: <Widget>[
-              SizedBox(
-                width: 16,
+            Transform.scale(
+              scale: 0.45,
+              child: DayNightSwitch(
+                value: isSwitched,
+                dayColor: dayColor,
+                nightColor: nightColor,
+                onChanged: (val) {
+                  toggleTheme();
+                  setState(() {
+                    isSwitched = val;
+                  });
+                },
               ),
-              Text(
-                "Dark mode",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-              Switch(
-                activeColor: Colors.blue,
-                  value: isSwitched,
-                  onChanged: (val) {
-                    toggleTheme();
-                    setState(() {
-                      isSwitched = val;
-                    });
-                  }),
-            ]),
-            Text(
-              "Categories",
-              style: TextStyle(fontSize: 20, fontFamily: 'Overpass'),
             ),
+            Text("Categories", style: TextStyle(fontSize: 20)),
             SizedBox(
               height: 16,
             ),
@@ -178,8 +213,8 @@ class _HomeState extends State<Home> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Color(0xff8c8c8c),
-                  borderRadius: BorderRadius.circular(30),
+                  color: Color(0xffb2b2b2),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 margin: EdgeInsets.symmetric(horizontal: 24),
                 padding: EdgeInsets.symmetric(horizontal: 24),
@@ -190,9 +225,7 @@ class _HomeState extends State<Home> {
                       controller: searchController,
                       decoration: InputDecoration(
                           hintText: "search wallpapers",
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                          ),
+                          hintStyle: TextStyle(),
                           border: InputBorder.none),
                     )),
                     InkWell(

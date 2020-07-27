@@ -51,16 +51,7 @@ class _SearchViewState extends State<SearchView> {
       appBar: AppBar(
         title: brandName(),
         elevation: 0.0,
-        actions: <Widget>[
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
-              ))
-        ],
       ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -70,7 +61,7 @@ class _SearchViewState extends State<SearchView> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Color(0xfff5f8fd),
+                  color: Color(0xff8c8c8c),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 margin: EdgeInsets.symmetric(horizontal: 24),
@@ -82,6 +73,9 @@ class _SearchViewState extends State<SearchView> {
                       controller: searchController,
                       decoration: InputDecoration(
                           hintText: "search wallpapers",
+                          hintStyle: TextStyle(
+                            color: Colors.blue,
+                          ),
                           border: InputBorder.none),
                     )),
                     InkWell(

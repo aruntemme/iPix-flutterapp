@@ -57,13 +57,8 @@ Widget brandName() {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "Wallpaper",
-          style: TextStyle(color: Colors.black87, fontFamily: 'Overpass'),
+          "iPix              ",
         ),
-        Text(
-          "Hub            ",
-          style: TextStyle(color: Colors.blue, fontFamily: 'Overpass'),
-        )
       ],
     ),
   );

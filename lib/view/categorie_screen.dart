@@ -48,14 +48,6 @@ class _CategorieScreenState extends State<CategorieScreen> {
       appBar: AppBar(
         title: brandName(),
         elevation: 0.0,
-        actions: <Widget>[
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
-              ))
-        ],
       ),
       body: SingleChildScrollView(
         child: wallPaper(photos, context)

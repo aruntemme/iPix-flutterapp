@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
@@ -22,6 +23,7 @@ class ImageView extends StatefulWidget {
 
 class _ImageViewState extends State<ImageView> {
   var filePath;
+  PermissionStatus  _status;
 
   _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -29,6 +31,26 @@ class _ImageViewState extends State<ImageView> {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    PermissionHandler().checkPermissionStatus(PermissionGroup.storage)
+    .then(_updateStatus);
+  }
+
+  void _updateStatus(PermissionStatus status){
+    if(status!= _status){
+      setState(() {
+        _status = status;
+      });
+    }
+  }
+
+  void _askPermission() {
+    PermissionHandler().requestPermissions([PermissionGroup.storage])
+        .then(_onStatusRequested);
   }
 
   @override
@@ -66,6 +88,7 @@ class _ImageViewState extends State<ImageView> {
                         //js.context.callMethod('downloadUrl',[widget.imgPath]);
                         //response = await dio.download(widget.imgPath, "./xx.html");
                       } else {
+                        _askPermission();
                         _save();
                       }
                       //Navigator.pop(context);
@@ -145,8 +168,8 @@ class _ImageViewState extends State<ImageView> {
     );
   }
 
-  _save() async {
-    await _askPermission();
+  void _save() async {
+    _askPermission();
     var response = await Dio().get(widget.imgPath,
         options: Options(responseType: ResponseType.bytes));
     final result =
@@ -155,14 +178,24 @@ class _ImageViewState extends State<ImageView> {
     Navigator.pop(context);
   }
 
-  _askPermission() async {
-    if (Platform.isIOS) {
-      /*Map<PermissionGroup, PermissionStatus> permissions =
-          */await PermissionHandler()
-              .requestPermissions([PermissionGroup.photos]);
-    } else {
-     /* PermissionStatus permission = */await PermissionHandler()
-          .checkPermissionStatus(PermissionGroup.storage);
-    }
+
+
+//  _askPermission() async {
+//    if (Platform.isIOS) {
+//      /*Map<PermissionGroup, PermissionStatus> permissions =
+//          */await PermissionHandler()
+//              .requestPermissions([PermissionGroup.photos]);
+//    } else {
+//
+//     /* PermissionStatus permission = */await PermissionHandler()
+//          .checkPermissionStatus(PermissionGroup.storage);
+//    }
+//  }
+
+
+
+  void _onStatusRequested(Map<PermissionGroup, PermissionStatus> statuses) {
+    final status = statuses[PermissionGroup.storage];
+    _updateStatus(status);
   }
 }
