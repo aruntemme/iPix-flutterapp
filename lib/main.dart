@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       themedWidgetBuilder: (context, theme) {
         return MaterialApp(
-          title: 'Wallpaper Hub',
+          title: 'iPix',
           debugShowCheckedModeBanner: false,
           theme: theme,
           home: Home(),

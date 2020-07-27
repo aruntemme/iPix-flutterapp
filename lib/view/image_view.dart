@@ -1,5 +1,4 @@
-import 'dart:async';
-import 'dart:io';
+
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -10,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 //import 'dart:js' as js;
 
 class ImageView extends StatefulWidget {
@@ -44,6 +45,7 @@ class _ImageViewState extends State<ImageView> {
     if(status!= _status){
       setState(() {
         _status = status;
+
       });
     }
   }
@@ -90,6 +92,15 @@ class _ImageViewState extends State<ImageView> {
                       } else {
                         _askPermission();
                         _save();
+                        Fluttertoast.showToast(
+                            msg: "Downloaded successfully",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.white,
+                            textColor: Colors.black,
+                            fontSize: 12.0
+                        );
                       }
                       //Navigator.pop(context);
                     },
@@ -122,22 +133,13 @@ class _ImageViewState extends State<ImageView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  "Set Wallpaper",
+                                  "Download Wallpaper",
                                   style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                SizedBox(
-                                  height: 1,
-                                ),
-                                Text(
-                                  kIsWeb
-                                      ? "Image will open in new tab to download"
-                                      : "Image will be saved in gallery",
-                                  style: TextStyle(
-                                      fontSize: 8, color: Colors.white70),
-                                ),
+
                               ],
                             )),
                       ],
@@ -150,9 +152,9 @@ class _ImageViewState extends State<ImageView> {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    "Cancel",
+                    "Back",
                     style: TextStyle(
-                        color: Colors.white60,
+                        color: Colors.white70,
                         fontSize: 12,
                         fontWeight: FontWeight.w500),
                   ),
