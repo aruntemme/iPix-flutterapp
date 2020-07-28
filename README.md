@@ -1,6 +1,35 @@
 # iPix-flutterapp
 
-A new Flutter application.
+Wallpaper app by Flutter
+
+# Installation
+
+1. Clone this repo
+
+2.Go to home directory 
+   ```bash
+   cd iPix
+   ```
+3. Add [pexels](https://www.pexels.com/api/?locale=en-US) APIKEY to  /lib/data/data.dart
+
+4. Connect your device or emulator
+
+5. Run this command
+  ```bash
+  flutter run --verbose
+  ```
+  
+
+# Previews
+
+
+<img src = "media/1.jpg" width="400" height ="800">      <img src = "media/2.jpg" width="400" height ="800">
+
+<img src = "media/3.jpg" width="400" height ="800">      <img src = "media/4.jpg" width="400" height ="800">
+
+<img src = "media/5.jpg" width="400" height ="800">      <img src = "media/6.jpg" width="400" height ="800">
+
+
 
 ## Getting Started
 
@@ -14,3 +43,14 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Give some star if you love this work
+
+
+
+
