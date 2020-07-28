@@ -6,10 +6,11 @@ Wallpaper app by Flutter
 
 1. Clone this repo
 
-2.Go to home directory 
-   ```bash
-   cd iPix
-   ```
+2. Go to Home directory
+  ```bash
+  cd iPix
+  ```
+  
 3. Add [pexels](https://www.pexels.com/api/?locale=en-US) APIKEY to  /lib/data/data.dart
 
 4. Connect your device or emulator
@@ -23,15 +24,15 @@ Wallpaper app by Flutter
 # Previews
 
 
-<img src = "media/1.jpg" width="400" height ="800">      <img src = "media/2.jpg" width="400" height ="800">
-
-<img src = "media/3.jpg" width="400" height ="800">      <img src = "media/4.jpg" width="400" height ="800">
-
-<img src = "media/5.jpg" width="400" height ="800">      <img src = "media/6.jpg" width="400" height ="800">
+<img src = "media/1.jpg" width="300" height ="600">        <img src = "media/2.jpg" width="300" height ="600">        <img src = "media/3.jpg" width="300" height ="600">
 
 
+<img src = "media/4.jpg" width="300" height ="600">        <img src = "media/5.jpg" width="300" height ="600">        <img src = "media/6.jpg" width="300" height ="600">
 
-## Getting Started
+
+
+
+## New to Flutter ?
 
 This project is a starting point for a Flutter application.
 
@@ -49,7 +50,7 @@ samples, guidance on mobile development, and a full API reference.
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Give some star if you love this work
+Give ⭐ if you love this work ❤️
 
 
 
