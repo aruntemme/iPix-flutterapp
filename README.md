@@ -15,7 +15,10 @@ Wallpaper app by Flutter
 
 4. Connect your device or emulator
 
-5. Run this command
+5. Get Pub dependencies
+
+6. Run this command
+
   ```bash
   flutter run --verbose
   ```
